@@ -1,6 +1,7 @@
 'use strict';
 
-const Hapi = require('@hapi/hapi');
+import Hapi from '@hapi/hapi';
+import myPlugin from './plugin.js';
 
 const init = async () => {
 
@@ -8,6 +9,17 @@ const init = async () => {
     port: 3000,
     host: 'localhost'
   });
+
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: (request, h) => {
+
+      return 'Hello World!';
+    }
+  });
+
+  await server.register(myPlugin);
 
   await server.start();
   console.log('Server running on %s', server.info.uri);
