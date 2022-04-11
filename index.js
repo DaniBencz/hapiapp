@@ -1,7 +1,7 @@
 'use strict';
 
 import Hapi from '@hapi/hapi';
-import myPlugin from './plugin.js';
+import { myPlugin } from './packages/plugin.js';
 
 const init = async () => {
 

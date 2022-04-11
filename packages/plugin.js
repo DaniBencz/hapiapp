@@ -1,8 +1,7 @@
 'use strict';
 
-const myPlugin = {
-  name: 'myPlugin',
-  version: '1.0.0',
+exports.myPlugin = {
+  pkg: require('./package.json'),
   register: async function (server, options) {
 
     server.route({
@@ -25,5 +24,3 @@ const myPlugin = {
 
   }
 };
-
-export default myPlugin;
