@@ -1,7 +1,7 @@
 'use strict';
 
 import Hapi from '@hapi/hapi';
-import { myPlugin } from './packages/plugin.js';
+import { plugin1, plugin2 } from './packages/plugis.js';
 
 const init = async () => {
 
@@ -19,7 +19,15 @@ const init = async () => {
     }
   });
 
-  await server.register(myPlugin);
+  await server.register([
+    plugin1,
+    {
+      plugin: plugin2,
+      options: {
+        isTest: 'Yessir'
+      }
+    }
+  ]);
 
   await server.start();
   console.log('Server running on %s', server.info.uri);
