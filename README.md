@@ -2,4 +2,6 @@
 
 install: `npm ci`
 
-run: `node .`
+start dev: `npm run dev`
+
+start prod: `node .`
