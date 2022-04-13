@@ -2,17 +2,20 @@
 
 import Hapi from '@hapi/hapi';
 import { plugin1, plugin2 } from './packages/plugins.js';
+import Scooter from '@hapi/scooter';
 
 const server = Hapi.server({
   port: 3000,
   host: 'localhost'
 });
 
+await server.register(Scooter);
+
 server.route({
   method: 'GET',
   path: '/',
   handler: (request, h) => {
-    return 'Hello World!';
+    return request.plugins.scooter.toJSON();
   }
 });
 
@@ -30,12 +33,11 @@ const init = async () => {
   await server.start();
   console.log('Server running on %s', server.info.uri);
 };
+init();
 
 process.on('unhandledRejection', (err) => {
   console.log(err);
   process.exit(1);
 });
-
-init();
 
 export default server;
