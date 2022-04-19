@@ -9,7 +9,6 @@ exports.plugin1 = {
       method: 'GET',
       path: '/{name}',
       handler: (request, h) => {
-
         return `Hello ${request.params.name}`;
       }
     });
